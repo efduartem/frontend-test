@@ -1,0 +1,14 @@
+#main-container{
+    max-height: calc(100vh - 64px);
+    overflow: auto;
+}
+
+.container {
+    padding: 16px;
+}
+
+.create-event-button {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+}
