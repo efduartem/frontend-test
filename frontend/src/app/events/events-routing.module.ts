@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventsIndexComponent } from './views/index/events-index.component';
+import { EventsDetailComponent } from './views/detail/events-detail.component';
+import { EventsCreateComponent } from './views/create/events-create.component';
 
 const routes: Routes = [
   {
@@ -9,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: EventsIndexComponent
+    component: EventsCreateComponent
   },
   {
     path: ':id',
-    component: EventsIndexComponent
+    component: EventsDetailComponent
   }
 ];
 

@@ -1,0 +1,88 @@
+<div class="main-router-content-container">
+  <form fxLayout="row" [formGroup]="eventForm" (ngSubmit)="saveEvent()">
+    <div fxFlex="60" fxLayout="column" class="container">
+      <mat-form-field style="margin-bottom:16px;">
+        <input formControlName="title" matInput placeholder="Title" autocomplete="off" required>
+        <mat-error *ngIf="eventForm.get('title').dirty && eventForm.get('title').errors">
+          Please provide a title for the event
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea formControlName="description" rows="30" matInput placeholder="Event Description" required></textarea>
+        <mat-error *ngIf="eventForm.get('description').dirty && eventForm.get('description').errors">
+          Please provide a description for the event
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="column" class="container">
+      <mat-form-field>
+        <input formControlName="eventImage" matInput placeholder="Image URL" autocomplete="off" required>
+        <mat-error *ngIf="eventForm.get('eventImage').dirty && eventForm.get('eventImage').errors">
+          Please provide a image for the event
+        </mat-error>
+      </mat-form-field>
+      <div fxLayoutAlign="center center">
+        <img class="event-image" [ngClass]="{'event-image-bordered': !eventImageURL}" [src]="eventImageURL" alt="">
+      </div>
+      <mat-form-field>
+        <input formControlName="location" matInput placeholder="Location" autocomplete="off" required>
+        <mat-error *ngIf="eventForm.get('location').dirty && eventForm.get('location').errors">
+          Please provide the location for the event
+        </mat-error>
+      </mat-form-field>
+      <form [formGroup]="eventDateForm" #formDirective="ngForm" id="add-date-form" fxLayout="row wrap" (ngSubmit)="addDate(formDirective)">
+        <div fxFlex="50">
+          <mat-form-field>
+            <input matInput formControlName="date" [matDatepicker]="dp" placeholder="Date">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+            <mat-error *ngIf="eventDateForm.get('date').dirty && eventDateForm.get('date').errors">
+              Please provide the date for the event
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50">
+          Time:
+          <mat-form-field>
+            <input formControlName="time" type="time" matInput>
+            <mat-error *ngIf="eventDateForm.get('time').dirty && eventDateForm.get('time').errors">
+              Please provide the time for the event date
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button type="submit" mat-raised-button color="primary">Add Date</button>
+      </form>
+      <table mat-table [dataSource]="eventDatesTableDataSource" class="mat-elevation-z8">
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <!-- Time Column -->
+        <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef> Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let i = index">
+            <button type="button" (click)="removeEventDate(i)" mat-icon-button matTooltip="Remove Date"
+              matTooltipPosition="right">
+              <mat-icon aria-label="icon-button with a delete icon">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="eventDatesTableDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: eventDatesTableDisplayedColumns;"></tr>
+      </table>
+    </div>
+    <button type="submit" mat-fab class="default-flat-action-button" matTooltip="Save Event" matTooltipPosition="above">
+      <mat-icon aria-label="icon-button with a save icon">save</mat-icon>
+    </button>
+  </form>
+</div>
