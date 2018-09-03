@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { Event } from '../../models/eventModels';
 
 @Component({
   selector: 'app-events-card',
@@ -7,18 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./events-card.component.scss']
 })
 export class EventsCardComponent implements OnInit {
+  @Input('event') event: Event;
+  constructor() { }
 
-  constructor(private router: Router) { }
+  ngOnInit() { }
 
-  ngOnInit() {
-  }
-
-  twitterShare() {
-    window.open('https://twitter.com/intent/tweet?text=Hello Twitter', 'twitter-popup', 'height=350,width=600');
-  }
-
-  goToEventDetail() {
-    this.router.navigate(['/events', 1]);
+  twitterShare(event) {
+    const tweetText = encodeURI(`Iré al ${event.title} @ ${event.dates[0]}`);
+    const tweetUrl = encodeURI(`${window.location.href}/${event.id}`);
+    window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`, 'twitter-popup', 'height=350,width=600');
   }
 
 }

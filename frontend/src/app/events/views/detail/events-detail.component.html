@@ -1,28 +1,21 @@
 <div class="main-router-content-container">
   <div fxFlex="60" fxLayout="column" class="container">
-    <div fxLayout="row" fxLayoutAlign="start end">
-      <h1>Event Name</h1>&nbsp;
-      <h4>Location</h4>
-    </div>
-    <p>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-      dolore magna aliquyam erat,
-      sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-      takimata sanctus est
-      Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-      tempor invidunt ut labore et
-      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren,
-      no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-      sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-      justo duo dolores et
-      ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-    </p>
+    <mat-card class="event-card">
+      <mat-card-header>
+        <mat-card-title>{{event.title}}</mat-card-title>
+        <mat-card-subtitle>{{event.location}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content class="event-card-content">
+        <p>
+          {{event.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
   </div>
   <div fxFlex fxLayout="column" class="container">
     <div fxLayoutAlign="center center">
-      <img class="event-image" src="http://bienvenidoaparaguay.com/img/destinos/img_1342597754.jpg" alt="">
+      <img class="event-image" [src]="event.eventImage" [alt]="event.title">
     </div>
     <table mat-table [dataSource]="eventDatesTableDataSource" class="mat-elevation-z8">
 

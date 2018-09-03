@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { EventDate, Event } from '../../models/eventModels';
 import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { EventsService } from '../../events.service';
 
 @Component({
   selector: 'app-events-create',
@@ -19,7 +20,7 @@ export class EventsCreateComponent implements OnInit {
   eventDatesTableDataSource: MatTableDataSource<EventDate> = new MatTableDataSource();
   eventDateList: EventDate[] = [];
   constructor(private formBuilder: FormBuilder, private datePipe: DatePipe,
-    public snackBar: MatSnackBar, private router: Router) { }
+    public snackBar: MatSnackBar, private router: Router, private eventsService: EventsService) { }
 
   ngOnInit() {
     this.eventForm = this.formBuilder.group({
@@ -45,7 +46,7 @@ export class EventsCreateComponent implements OnInit {
   addDate(formDirective: FormGroupDirective) {
     if (this.eventDateForm.valid) {
       const eventDateFormDate = this.eventDateForm.getRawValue();
-      const eventDate: EventDate = new EventDate(this.datePipe.transform(eventDateFormDate.date, 'dd/MM/yyyy'), eventDateFormDate.time);
+      const eventDate: EventDate = new EventDate(this.datePipe.transform(eventDateFormDate.date, 'MM/dd/yyyy'), eventDateFormDate.time);
       this.eventDateList.push(eventDate);
       this.eventDatesTableDataSource.data = this.eventDateList;
       formDirective.resetForm();
@@ -71,9 +72,10 @@ export class EventsCreateComponent implements OnInit {
       event.dates = this.eventDateList.map((eventDate: EventDate) => {
         return `${eventDate.date} ${eventDate.time}`;
       });
-      // console.log(event);
-      this.showSnacbar('Done!', 2500);
-      // await this._productService.createProduct(this.product);
+      await this.eventsService.createEvent(event);
+      this.eventsService.eventList = null;
+      this.eventsService.featuredEventList = null;
+      this.showSnacbar('Event created successfully!', 2500);
       this.router.navigate(['/events']);
     } else {
       this.validateForm(this.eventForm);

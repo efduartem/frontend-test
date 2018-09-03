@@ -1,46 +1,13 @@
 <div fxLayout="row" class="main-router-content-container">
   <div fxFlex="70" class="container">
     <div fxFlexFill fxLayout="row wrap" fxLayoutGap="10px grid" style="cursor: pointer;">
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
-      </div>
-      <div fxFlex="50">
-        <app-events-card></app-events-card>
+      <div fxFlex="50" *ngFor="let event of eventList">
+        <app-events-card [event]="event"></app-events-card>
       </div>
     </div>
   </div>
-  <div fxFlex class="container">
-    <app-events-highlight-list></app-events-highlight-list>
+  <div fxFlex="30" class="container">
+    <app-events-list [eventList]="featuredEventList" [eventListTitle]="'Today\'s Highlight'"></app-events-list>
   </div>
   <a routerLink="./create" mat-fab class="default-flat-action-button" matTooltip="Create New Event" matTooltipPosition="above">
     <mat-icon aria-label="icon-button with a add icon">add</mat-icon>

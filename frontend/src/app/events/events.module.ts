@@ -5,12 +5,15 @@ import { EventsRoutingModule } from './events-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsMaterialModule } from './events.material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EventsIndexComponent } from './views/index/events-index.component';
 import { EventsCardComponent } from './components/events-card/events-card.component';
-import { EventsHighlightListComponent } from './components/events-highlight-list/events-highlight-list.component';
+import { EventsListComponent } from './components/events-list/events-list.component';
 import { EventsDetailComponent } from './views/detail/events-detail.component';
 import { EventsCreateComponent } from './views/create/events-create.component';
+
+import { EventsService } from './events.service';
 
 @NgModule({
   imports: [
@@ -20,13 +23,15 @@ import { EventsCreateComponent } from './views/create/events-create.component';
     EventsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     EventsIndexComponent,
     EventsCardComponent,
-    EventsHighlightListComponent,
+    EventsListComponent,
     EventsCreateComponent,
     EventsDetailComponent
-  ]
+  ],
+  providers: [EventsService]
 })
 export class EventsModule { }

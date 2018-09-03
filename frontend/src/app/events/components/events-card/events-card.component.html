@@ -1,8 +1,8 @@
-<mat-card (click)="goToEventDetail()">
+<mat-card>
   <div>
     <div>
       <mat-card-subtitle>
-        23 Sep @ 19:00
+        {{event.dates[0] | date:'dd MMM @ HH:mm'}}
       </mat-card-subtitle>
     </div>
     <div fxFlex></div>
@@ -11,17 +11,16 @@
         <mat-icon>share</mat-icon>
       </button>
       <mat-menu #menu="matMenu" [overlapTrigger]="false" [yPosition]="'below'" [xPosition]="'before'">
-        <button mat-menu-item (click)="twitterShare()">
+        <button mat-menu-item (click)="twitterShare(event)">
           <span><img src="/assets/img/twitter.png" alt=""> Twit this event</span>
         </button>
       </mat-menu>
-      <!-- <mat-icon>share</mat-icon> -->
     </div>
   </div>
   <mat-card-content>
-    <mat-card-title>Event Name</mat-card-title>
+    <mat-card-title>{{event.title}}</mat-card-title>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>View</button>
+    <a [routerLink]="['/events', event.id]" mat-button>View</a>
   </mat-card-actions>
 </mat-card>
