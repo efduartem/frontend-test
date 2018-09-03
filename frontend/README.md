@@ -10,7 +10,7 @@ npm install
 * Remember have running the backend server before test the frontend application.
 ### Development server
 
-Remember have running the backend server before test the frontend application.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ### Build
 
