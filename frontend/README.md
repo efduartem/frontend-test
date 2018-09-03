@@ -3,12 +3,14 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Run
-
-Remember have running the backend server before test the frontend application.
-
+* To install all dependecies before run the project excecute in this directory:
+```shel
+npm install
+```
+* Remember have running the backend server before test the frontend application.
 ### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Remember have running the backend server before test the frontend application.
 
 ### Build
 
@@ -16,7 +18,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Production Test With Docker  
 
-This Dockerfile (./Dockerfile) deploy the Angular app with Docker, building it with Node.js as you would do locally, but end up with a thin and efficient Nginx image, with just the compiled code. Ready for production.
+This [Dockerfile](./Dockerfile) deploy the Angular app with Docker, building it with Node.js as you would do locally, but end up with a thin and efficient Nginx image, with just the compiled code. Ready for production.
 
 #### Prerequisities
 
