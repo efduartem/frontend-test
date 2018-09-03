@@ -14,6 +14,7 @@ import { EventsDetailComponent } from './views/detail/events-detail.component';
 import { EventsCreateComponent } from './views/create/events-create.component';
 
 import { EventsService } from './events.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EventsService } from './events.service';
     EventsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   declarations: [
     EventsIndexComponent,

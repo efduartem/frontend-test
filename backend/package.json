@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "test": "node test",
-    "start": "node app"
+    "start": "node app",
+    "start-dev": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "nodemon": "^1.18.4",
     "supertest": "^3.1.0",
     "tape": "^4.9.1"
   }

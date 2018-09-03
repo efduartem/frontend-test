@@ -8,13 +8,15 @@ import { Event } from '../../models/eventModels';
   styleUrls: ['./events-index.component.scss']
 })
 export class EventsIndexComponent implements OnInit {
+  showSpinner = true;
   eventList: Event[] = [];
   featuredEventList: Event[] = [];
   constructor(private eventsService: EventsService) { }
 
-  ngOnInit() {
-    this.loadEventList();
-    this.loadFeaturedEventList();
+  async ngOnInit() {
+    await this.loadEventList();
+    await this.loadFeaturedEventList();
+    this.showSpinner = false;
   }
 
   async loadEventList() {
@@ -25,7 +27,6 @@ export class EventsIndexComponent implements OnInit {
     }
     const eventListResponse = await this.eventsService.getEventList();
     this.eventList = eventListResponse.events;
-    // console.log(this.eventList);
   }
 
   async loadFeaturedEventList() {
@@ -36,7 +37,6 @@ export class EventsIndexComponent implements OnInit {
     }
     const featuredEventListResponse = await this.eventsService.getFeaturedEventList();
     this.featuredEventList = featuredEventListResponse.events;
-    // console.log(this.featuredEventList);
   }
 
 }

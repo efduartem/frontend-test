@@ -1,7 +1,2 @@
-<mat-toolbar color="primary">
-  <a routerLink="../" mat-icon-button *ngIf="showBackButton">
-    <mat-icon aria-label="icon-button with a arrow back icon">arrow_back</mat-icon>
-  </a>
-  <h1>Events</h1>
-</mat-toolbar>
+<app-toolbar [showBackButton]="showBackButton"></app-toolbar>
 <router-outlet></router-outlet>

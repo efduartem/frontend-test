@@ -2,26 +2,68 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-## Development server
+## Run
+
+Remember have running the backend server before test the frontend application.
+
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+### Production Test With Docker  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This Dockerfile (./Dockerfile) deploy the Angular app with Docker, building it with Node.js as you would do locally, but end up with a thin and efficient Nginx image, with just the compiled code. Ready for production.
 
-## Running end-to-end tests
+#### Prerequisities
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+In order to run the container you'll need docker installed.  
 
-## Further help
+*  [Windows](https://docs.docker.com/windows/started)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+*  [OS X](https://docs.docker.com/mac/started/)
+
+*  [Linux](https://docs.docker.com/linux/started/)
+
+#### Usage
+
+1. Create the image
+
+```shell
+
+docker build -t ingenious-frontend-test:prod .
+
+```  
+
+2. Run the container
+
+```shell
+
+docker run -d -p 8080:80 ingenious-frontend-test:prod
+
+```
+
+3. Navigate to `http://localhost:8080/` and test the application
+
+**_Remember to kill the container when no longer use it.  For that, follow the next steps_**
+
+1. List the running containers
+
+```shell
+docker ps
+```
+
+2. Find the CONTAINER ID of the ingenious-frontend-test:prod that has the status UP, then run
+
+```shell
+docker kill [CONTAINER ID]
+``` 
+
+#### Built With
+
+* node:8.11.4
+
+* nginx:1.15

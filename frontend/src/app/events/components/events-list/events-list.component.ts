@@ -15,6 +15,3 @@ export class EventsListComponent implements OnInit {
   }
 
 }
-// highlight
-// highlight
-// highlight

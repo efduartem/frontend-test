@@ -10,6 +10,7 @@ import { EventsService } from '../../events.service';
   styleUrls: ['./events-detail.component.scss'],
 })
 export class EventsDetailComponent implements OnInit {
+  showSpinner = true;
   eventId: number;
   event: Event = new Event();
   eventDatesTableDisplayedColumns: string[] = ['date', 'time'];
@@ -27,6 +28,7 @@ export class EventsDetailComponent implements OnInit {
         return new EventDate(date, time);
       });
       this.eventDatesTableDataSource.data = eventList;
+      this.showSpinner = false;
     });
   }
 

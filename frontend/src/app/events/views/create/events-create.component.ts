@@ -13,6 +13,7 @@ import { EventsService } from '../../events.service';
   providers: [ DatePipe ]
 })
 export class EventsCreateComponent implements OnInit {
+  showSpinner = false;
   eventForm: FormGroup;
   eventDateForm: FormGroup;
   eventDatesTableDisplayedColumns: string[] = ['date', 'time', 'actions'];
@@ -72,6 +73,7 @@ export class EventsCreateComponent implements OnInit {
       event.dates = this.eventDateList.map((eventDate: EventDate) => {
         return `${eventDate.date} ${eventDate.time}`;
       });
+      this.showSpinner = true;
       await this.eventsService.createEvent(event);
       this.eventsService.eventList = null;
       this.eventsService.featuredEventList = null;
